@@ -1,65 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plasterManifest
-  schemaVersion="1.1"
-  templateType="Project" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
-  <metadata>
-    <name>PowerShellModuleStructure</name>
-    <id>e063169a-db01-4a5a-9d0a-8ad9d7d5729c</id>
-    <version>0.0.1</version>
-    <title>PowerShellModuleStructure</title>
-    <description>Structure of the Powershell module in accordance with best practices</description>
-    <author>Mateusz Nadobnik</author>
-    <tags>module</tags>
-  </metadata>
-  <parameters>
-    <parameter name='ModuleName' type='text' prompt='Enter the name of the module'/>
-    <parameter name='Version' type='text' prompt='Enter the version number of the module' default='0.0.1'/>
-    <parameter name='Author' type='user-fullname' prompt='Enter the name of the author'/>
-    <parameter name='Email' type='user-email' prompt='Enter the email of the author'/>
-    <parameter name='Description' type='text' prompt='Enter description' default='The place to description'/>
-    <parameter name='CI' type='choice' prompt='Select a CI/CD integration (or None):' default='0' store='text' >
-            <choice label='&amp;None' help="No CI/CD specified." value="None"/>
-            <choice label='&amp;Jenkins' help="Your CI/CD is done using Jenkins." value="Jenkins"/>
-            <choice label='&amp;AzureDevOps' help="Your CI/CD is done using Azure DevOps." value='Azure'/>
-      </parameter>
-      <parameter name='UseClass' type='choice' prompt='The module will be use PowerShell classess?:' default='0' store='text'>
-        <choice label='&amp;No' help='' value = 'No' />
-        <choice label='&amp;Yes' help='' value = 'Yes' />
-      </parameter>
-  </parameters>
-  <content>
-    <message>Lunche createing your PowerShell module...</message>
-
-    <newModuleManifest destination='${PLASTER_PARAM_ModuleName}.psd1'
-                   moduleVersion='$PLASTER_PARAM_Version'
-                   rootModule='${PLASTER_PARAM_ModuleName}.psm1'
-                   author='$PLASTER_PARAM_Author'
-                   description='...'
-                   encoding='UTF8-NoBOM'
-                   powerShellVersion='5.1'/>
-<message>Create structure directories</message>
-    <file source='' destination='public'/>
-    <file source='' destination='private'/>
-    <file source='' destination='docs'/>
-    <file source='' destination='lib'/>
-    <file source='' destination='bin'/>
-    <file source='' destination='data'/>
-    <file source='' destination='tests'/>
-    <file source='' destination='.vscode'/>
-    <file source='' condition='$PLASTER_PARAM_UseClass -eq "Yes"' destination='class' />
-
-  <message>Create files</message>
-        <templateFile source='TemplateFile\readme.md' destination='readme.md'/>
-        <templateFile source='TemplateFile\.gitignore' destination='.gitignore'/>
-        <templateFile source='TemplateFile\module.psm1' destination='${PLASTER_PARAM_ModuleName}.psm1'/>
-        <templateFile source='TemplateFile\module.Build.ps1' destination='${PLASTER_PARAM_ModuleName}.Build.ps1'/>
-        <templateFile source='TemplateFile\function.Tests.ps1' destination='${PLASTER_PARAM_ModuleName}.Tests.ps1'/>
-        <templateFile source='TemplateFile\module.Format.ps1xml' destination='${PLASTER_PARAM_ModuleName}.Format.ps1xml'/>
-
-        <templateFile condition='$PLASTER_PARAM_CI -eq "Jenkins"' source='TemplateFile\Jenkins\template.Jenkinsfile' destination='${PLASTER_PARAM_ModuleName}.Jenkinsfile'/>
-        <templateFile condition='$PLASTER_PARAM_CI -eq "Azure"' source='TemplateFile\AzureDevOps\template.azure.yml' destination='${PLASTER_PARAM_ModuleName}.azure.yml'/>
-
-        <templateFile source='TemplateFile\function.ps1' destination='public\Get-Function.ps1'/>
-        <templateFile source='TemplateFile\VisualStudioCode\module.code-snippets' destination='.vscode\module.code-snippets'/>
-  </content>
+<plasterManifest schemaVersion="1.1" templateType="Project" 
+	xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+	<metadata>
+		<name>PowerShellModuleStructure</name>
+		<id>e063169a-db01-4a5a-9d0a-8ad9d7d5729c</id>
+		<version>0.0.1</version>
+		<title>PowerShellModuleStructure</title>
+		<description>Structure of the Powershell module in accordance with best practices</description>
+		<author>Mateusz Nadobnik</author>
+		<tags>module</tags>
+	</metadata>
+	<parameters>
+		<parameter name="ModuleName" type="text" prompt="Enter the name of the module" />
+		<parameter name="Version" type="text" prompt="Enter the version number of the module" default="0.0.1" />
+		<parameter name="Author" type="user-fullname" prompt="Enter the name of the author" />
+		<parameter name="Email" type="user-email" prompt="Enter the email of the author" />
+		<parameter name="Description" type="text" prompt="Enter description" default="The place to description" />
+		<parameter name="CI" type="choice" prompt="Select a CI/CD integration (or None):" default="0" store="text">
+			<choice label="&amp;None" help="No CI/CD specified." value="None" />
+			<choice label="&amp;Jenkins" help="Your CI/CD is done using Jenkins." value="Jenkins" />
+			<choice label="&amp;AzureDevOps" help="Your CI/CD is done using Azure DevOps." value="Azure" />
+		</parameter>
+		<parameter name="UseClass" type="choice" prompt="The module will be use PowerShell classess?:" default="0" store="text">
+			<choice label="&amp;No" help="" value="No" />
+			<choice label="&amp;Yes" help="" value="Yes" />
+		</parameter>
+	</parameters>
+	<content>
+		<message>
+			Lunche createing your PowerShell module...
+		</message>
+		<newModuleManifest destination="${PLASTER_PARAM_ModuleName}.psd1" moduleVersion="$PLASTER_PARAM_Version" rootModule="${PLASTER_PARAM_ModuleName}.psm1" author="$PLASTER_PARAM_Author" description="..." encoding="UTF8-NoBOM" powerShellVersion="5.1" />
+		<message>
+			Create structure directories
+		</message>
+		<file source="" destination="public" />
+		<file source="" destination="private" />
+		<file source="" destination="docs" />
+		<file source="" destination="lib" />
+		<file source="" destination="bin" />
+		<file source="" destination="data" />
+		<file source="" destination="tests" />
+		<file source="" destination=".vscode" />
+		<file source="" condition='$PLASTER_PARAM_UseClass -eq "Yes"' destination="class" />
+		<message>
+			Create files
+		</message>
+		<templateFile source="TemplateFile\readme.md" destination="readme.md" />
+		<templateFile source="TemplateFile\.gitignore" destination=".gitignore" />
+		<templateFile source="TemplateFile\module.psm1" destination="${PLASTER_PARAM_ModuleName}.psm1" />
+		<templateFile source="TemplateFile\module.Build.ps1" destination="${PLASTER_PARAM_ModuleName}.Build.ps1" />
+		<templateFile source="TemplateFile\module.Tests.ps1" destination="${PLASTER_PARAM_ModuleName}.Tests.ps1" />
+		<templateFile source="TemplateFile\module.Format.ps1xml" destination="${PLASTER_PARAM_ModuleName}.Format.ps1xml" />
+		<templateFile condition='$PLASTER_PARAM_CI -eq "Jenkins"' source="TemplateFile\Jenkins\template.Jenkinsfile" destination="${PLASTER_PARAM_ModuleName}.Jenkinsfile" />
+		<templateFile condition='$PLASTER_PARAM_CI -eq "Azure"' source="TemplateFile\AzureDevOps\template.azure.yml" destination="${PLASTER_PARAM_ModuleName}.azure.yml" />
+		<templateFile source="TemplateFile\function.ps1" destination="public\Get-Function.ps1" />
+		<templateFile source="TemplateFile\VisualStudioCode\module.code-snippets" destination=".vscode\module.code-snippets" />
+	</content>
 </plasterManifest>

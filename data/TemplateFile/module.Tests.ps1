@@ -12,7 +12,7 @@ Describe 'Module Manifest Tests' {
 
 
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$module = 'Podcast-NoAgenda'
+$module = $PLASTER_PARAM_Name
 
 Describe "$module Module Tests" {
 

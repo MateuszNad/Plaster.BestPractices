@@ -1,0 +1,1 @@
+# TODO: funckcja do ponownego
